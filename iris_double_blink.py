@@ -199,9 +199,11 @@ class Ui_MainWindow(object):
         if current_status == "blink":
             blink_time.append(time.time())
             count+=1
+
             if count==2:
                 current_time = time.time()
                 print('time: ', current_time - blink_time[-1])
+                
                 if time.time() - blink_time[-1] <= 0.5:
                     print("double blink")
                     blink_list.append("blink")
