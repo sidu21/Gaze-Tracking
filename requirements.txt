@@ -2,3 +2,5 @@ mediapipe
 opencv-python
 numpy
 pyqt5
+serial
+time
