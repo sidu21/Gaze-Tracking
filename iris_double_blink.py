@@ -153,9 +153,9 @@ class Ui_MainWindow(object):
                     iris_pos, ratio = self.iris_position(center_right, mesh_points[R_UP], mesh_points[R_DOWN],mesh_points[R_H_RIGHT], mesh_points[R_H_LEFT])
                     
                     blink, no_blinks = self.blink_status(mesh_points[R_UP], mesh_points[R_DOWN])
-                    self.text_label.setText(iris_pos)
+                    self.text_label.setText(iris_pos) #position of iris - up, down, center, right, left
                     print "DIGITAL LOGIC -- > SENDING..."
-                    port.write(str(3))
+                    port.write(iris_pos)
                     rcv = port.readline()
                     if rcv:
                         print(rcv)                   
