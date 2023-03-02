@@ -150,7 +150,7 @@ class Ui_MainWindow(object):
                     self.text_label.setText(iris_pos)
                     self.text_label1.setText(str(self.double_blink(blink)))
                     total_blinks = str(no_blinks)
-
+                    toarduino(port, status)
                     blinks = "total blinks: " + total_blinks
                     #print(blinks)
                     self.text_label2.setText(blinks)
@@ -161,6 +161,16 @@ class Ui_MainWindow(object):
             self.displayImage(self.frame, 1)
 
             self.key = cv.waitKey(1)
+
+    def toarduino(port,status):
+        # reading and writing data from and to arduino serially.                                      
+        # rfcomm0 -> this could be different
+        print "DIGITAL LOGIC -- > SENDING..."
+        port.write(self.status)
+        rcv = port.readline()
+        if rcv:
+            print(rcv)
+
 
     def stop_cam(self):
         self.imgLabel.hide()
