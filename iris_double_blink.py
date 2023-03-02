@@ -8,6 +8,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer
 
+import serial
+import time
+
+global port
+port = serial.Serial("/dev/rfcomm2", baudrate=9600)
+
 # variables
 global counter
 global final_counter
@@ -148,6 +154,12 @@ class Ui_MainWindow(object):
                     
                     blink, no_blinks = self.blink_status(mesh_points[R_UP], mesh_points[R_DOWN])
                     self.text_label.setText(iris_pos)
+                    print "DIGITAL LOGIC -- > SENDING..."
+                    port.write(str(3))
+                    rcv = port.readline()
+                    if rcv:
+                        print(rcv)                   
+                    
                     self.text_label1.setText(str(self.double_blink(blink)))
                     total_blinks = str(no_blinks)
                     toarduino(port, status)
